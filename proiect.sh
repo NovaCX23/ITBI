@@ -1,20 +1,30 @@
 #!/bin/bash
 
-# Verificam daca s-a dat un director ca argument 
+# Verificăm dacă sunt suficiente argumente
 if [ "$#" -lt 1 ]; then
-    echo "Utilizare: $0 [--follow-symlinks] <director>"
-    echo "Exemplu: $0 --follow-symlinks /etc"
+    echo "Eroare: Nu ai furnizat niciun argument"
+    echo "Utilizare corecta: $0 [--follow-symlinks] <director>"
     exit 1
 fi
 
-# Initializare varibile
+# Initializare variabile
 follow_symlinks=0
 start_dir=""
 
-# Verif primul argument 
+# Verificăm dacă utilizatorul a folosit flag-ul --follow-symlinks
 if [ "$1" == "--follow-symlinks" ]; then
     follow_symlinks=1
-    start_dir="2"         # Directorul este al doilea arg
+    start_dir="$2"  # Directorul este al doilea argument
 else
-    start_dir="1"         # Dir este primul arg
+    start_dir="$1"  # Directorul este primul argument
+fi
+
+# Debugging: afișăm valoarea directorului
+echo "Directorul specificat: $start_dir"
+
+# Verificăm dacă directorul a fost specificat și dacă este valid
+if [ -z "$start_dir" ] || [ ! -d "$start_dir" ]; then
+    echo "Eroare: Directorul specificat nu este valid!"
+    echo "Utilizare: $0 [--follow-symlinks] <director>"
+    exit 1
 fi
