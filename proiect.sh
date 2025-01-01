@@ -65,3 +65,10 @@ DFS(){
 
     done
 }        
+
+# Apelăm funcția DFS pe directorul de start
+dfs "$start_dir"
+
+# Afișăm numărul de linkuri simbolice broken găsite
+echo "Număr total de linkuri simbolice broken găsite: $broken_link_count"
+echo "Verificare completă!"
