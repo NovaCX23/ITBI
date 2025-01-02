@@ -1,0 +1,13 @@
+Analizam directorul: /tmp
+Analizam directorul: /tmp/snap-private-tmp
+Analizam directorul: /tmp/systemd-private-1b3d5d6bf0964752b0f08dbe1790671d-apache2.service-C3kI3r
+Analizam directorul: /tmp/systemd-private-1b3d5d6bf0964752b0f08dbe1790671d-colord.service-X5g91T
+Analizam directorul: /tmp/systemd-private-1b3d5d6bf0964752b0f08dbe1790671d-fwupd.service-nGQfuu
+Analizam directorul: /tmp/systemd-private-1b3d5d6bf0964752b0f08dbe1790671d-ModemManager.service-0W3sIX
+Analizam directorul: /tmp/systemd-private-1b3d5d6bf0964752b0f08dbe1790671d-polkit.service-3Y8DCq
+Analizam directorul: /tmp/systemd-private-1b3d5d6bf0964752b0f08dbe1790671d-power-profiles-daemon.service-6iXPAR
+Analizam directorul: /tmp/systemd-private-1b3d5d6bf0964752b0f08dbe1790671d-switcheroo-control.service-YLeXhS
+Analizam directorul: /tmp/systemd-private-1b3d5d6bf0964752b0f08dbe1790671d-systemd-logind.service-OpNJQt
+Analizam directorul: /tmp/systemd-private-1b3d5d6bf0964752b0f08dbe1790671d-systemd-oomd.service-TFZx73
+Analizam directorul: /tmp/systemd-private-1b3d5d6bf0964752b0f08dbe1790671d-systemd-resolved.service-L3ThaB
+Analizam directorul: /tmp/systemd-private-1b3d5d6bf0964752b0f08dbe1790671d-upower.service-AbFm2D
