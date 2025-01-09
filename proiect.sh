@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Funcția DFS pentru parcurgere
 dfs() {
     local dir="$1"
@@ -19,30 +18,20 @@ dfs() {
                 echo "Broken symlink găsit: $item"
                 ((broken_link_count++))  # Contorizăm link-urile broken
             elif [ $follow_symlinks -eq 1 ]; then
-                # Urmărim linkul simbolic
+                # URMĂRIRE LINK SIMBOLIC
                 echo "Urmărim linkul simbolic: $item"
                 target=$(readlink -f "$item")
 
-                # MODIFICARE
-                
-                # Verificăm dacă linkul simbolic duce la o destinație validă
+                # MODIFICARE: Verificăm dacă linkul simbolic duce la o destinație validă
                 if [ -e "$target" ]; then
-                    echo "Urmărim linkul simbolic: $item"
-                
-                # /MODIFICARE
-
                     echo "Linkul simbolic duce la: $target"
                     if [ -d "$target" ]; then
                         dfs "$target"  # Continuăm recursiv dacă target-ul este director
                     fi
-                
-                # MODIFICARE
-
                 else
                     echo "Link simbolic invalid găsit: $item"
                     ((broken_link_count++))
                 fi
-
                 # /MODIFICARE
             fi
         elif [ -d "$item" ]; then
@@ -51,8 +40,6 @@ dfs() {
     done
 }
 
-
-
 # Verificăm dacă s-a dat un argument 
 if [ "$#" -lt 1 ]; then
     echo "Eroare: Nu ai furnizat niciun argument"
@@ -60,13 +47,11 @@ if [ "$#" -lt 1 ]; then
     exit 1
 fi
 
-
 # Inițializare variabile
 follow_symlinks=0
 start_dir=""
 broken_link_count=0
 first_run=1
-
 
 # Verificăm dacă utilizatorul a folosit flag-ul --follow-symlinks
 if [ "$1" == "--follow-symlinks" ]; then
@@ -76,10 +61,8 @@ else
     start_dir="$1"  # Directorul este primul argument
 fi
 
-
 # Debugging: afișăm valoarea directorului
 echo "Directorul specificat: $start_dir"
-
 
 # Verificăm dacă directorul a fost specificat și dacă este valid
 if [ -z "$start_dir" ] || [ ! -d "$start_dir" ]; then
@@ -88,14 +71,11 @@ if [ -z "$start_dir" ] || [ ! -d "$start_dir" ]; then
     exit 1
 fi
 
-
 # Apelăm funcția DFS pe directorul de start
 dfs "$start_dir"
 
-
 # Afișăm numărul de linkuri simbolice broken găsite
 echo "Număr total de linkuri simbolice broken găsite: $broken_link_count"
-
 
 # Menționăm dacă a avut loc parcurgerea recursivă
 if [ $follow_symlinks -eq 1 ]; then
@@ -103,7 +83,6 @@ if [ $follow_symlinks -eq 1 ]; then
 else
     echo "Nu s-a utilizat flag-ul --follow-symlinks. Linkurile simbolice nu au fost analizate recursiv."
 fi
-
 
 # Done
 echo "Verificare completă!"
