@@ -36,3 +36,22 @@ for i in {1..10}; do
         ln -s "$broken_dir" "$new_dir/link_to_broken_directory_$j"
     done
 done
+
+# MODIFICARE 
+
+# Creăm linkuri simbolice care duc la directoare valide, pentru testare
+# Aceste linkuri valide vor fi urmate în scriptul principal
+ln -s "$target_dir/new_directory_1" "$target_dir/valid_link_1"
+echo "Link simbolic valid creat: $target_dir/valid_link_1"
+
+# Creăm linkuri "broken" și în directorul valid pentru testare recursivă
+for j in {1..5}; do
+    # Creăm linkuri simbolice "broken" în directorul valid
+    broken_file="$target_dir/new_directory_1/broken_file_$j"
+    ln -s "$broken_file" "$target_dir/new_directory_1/link_to_broken_file_1_${j}"
+    
+    broken_dir="$target_dir/new_directory_1/broken_directory_$j"
+    ln -s "$broken_dir" "$target_dir/new_directory_1/link_to_broken_directory_1_${j}"
+done
+
+# /MODIFICARE

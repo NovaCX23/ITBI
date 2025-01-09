@@ -4,12 +4,11 @@
 # Funcția DFS pentru parcurgere
 dfs() {
     local dir="$1"
-    # Suprascrie fișierul doar la primul apel
     if [ "$first_run" -eq 1 ]; then
-        echo "Analizam directorul: $dir" > output_directoare.txt
+        echo "Analizăm directorul: $dir" > output_directoare.txt
         first_run=0
     else
-        echo "Analizam directorul: $dir" >> output_directoare.txt
+        echo "Analizăm directorul: $dir" >> output_directoare.txt
     fi
 
     # Parcurgem toate elementele din director
@@ -18,20 +17,40 @@ dfs() {
         if [ -L "$item" ]; then
             if [ ! -e "$item" ]; then
                 echo "Broken symlink găsit: $item"
-                ((broken_link_count++)) # Contorizăm link-urile broken
+                ((broken_link_count++))  # Contorizăm link-urile broken
             elif [ $follow_symlinks -eq 1 ]; then
-                # Obținem calea reală către directorul sau fișierul la care duce linkul simbolic
-                local target
+                # Urmărim linkul simbolic
+                echo "Urmărim linkul simbolic: $item"
                 target=$(readlink -f "$item")
-                if [ -d "$target" ]; then
-                    dfs "$target" # Continuăm recursiv dacă target-ul este director
+
+                # MODIFICARE
+                
+                # Verificăm dacă linkul simbolic duce la o destinație validă
+                if [ -e "$target" ]; then
+                    echo "Urmărim linkul simbolic: $item"
+                
+                # /MODIFICARE
+
+                    echo "Linkul simbolic duce la: $target"
+                    if [ -d "$target" ]; then
+                        dfs "$target"  # Continuăm recursiv dacă target-ul este director
+                    fi
+                
+                # MODIFICARE
+
+                else
+                    echo "Link simbolic invalid găsit: $item"
+                    ((broken_link_count++))
                 fi
+
+                # /MODIFICARE
             fi
         elif [ -d "$item" ]; then
-            dfs "$item" # Apelăm recursiv pentru subdirectoare
+            dfs "$item"  # Apelăm recursiv pentru subdirectoare
         fi
     done
 }
+
 
 
 # Verificăm dacă s-a dat un argument 
