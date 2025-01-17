@@ -1,4 +1,6 @@
 Analizăm directorul: test_dir
+Analizăm directorul: test_dir/complex_directory
+Analizăm directorul: test_dir/complex_directory/sub_dir
 Analizăm directorul: test_dir/new_directory_1
 Analizăm directorul: test_dir/new_directory_10
 Analizăm directorul: test_dir/new_directory_2
